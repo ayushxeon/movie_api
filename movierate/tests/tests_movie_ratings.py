@@ -8,7 +8,7 @@ from rest_framework.test import force_authenticate
 from rest_framework.test import APIRequestFactory
 from ..models import Movie,Rating
 
-from ..views import rate_movie, show_movie
+from ..views import list_movie,rate_movie
 
 class AccountsTest(APITestCase):
     def setUp(self):
@@ -130,14 +130,14 @@ class AccountsTest(APITestCase):
     def test_listing_movies_with_correct_token(self):
         request = self.httpfactory.get(self.list_movies , format='json')
         force_authenticate(request, user=self.test_user2)
-        view = show_movie
+        view = list_movie
         response = view(request)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
        
         
     def test_listing_movies_without_token(self):
         request = self.httpfactory.get(self.list_movies , format='json')
-        view = show_movie
+        view = list_movie
         response = view(request)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
         
