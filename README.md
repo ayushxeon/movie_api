@@ -20,4 +20,8 @@ Running Django Server
 2) `python manage.py runserver`
 
 
-API Docs: `https://documenter.getpostman.com/view/20541760/UyrEiFgG`
+**API Docs:** `https://documenter.getpostman.com/view/20541760/UyrEiFgG`
+
+Unit Test Result:<br><br>
+![alt text](https://i.imgur.com/gTvWiM0.png)
+
