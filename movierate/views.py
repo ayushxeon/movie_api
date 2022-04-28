@@ -33,17 +33,16 @@ def listout(request):
 def show_movie(request):
     data=Movie.objects.all()
     serializer = MovieSerializer(data,many=True)
-    print(serializer.data)
+    
     return Response(serializer.data,status=HTTP_200_OK)
 
 @api_view(["POST"])
 @permission_classes([IsAuthenticated])
 def rate_movie(request):
     username = request.user
-    print(username)
+    
     rating=request.data.get("rating")
     movie=request.data.get("movie")
-    print(rating,"",movie)
     x=Movie.objects.filter(movie_name=movie).first()
     y=Rating.objects.filter(movie=x,user=request.user).first()
     if not x:
