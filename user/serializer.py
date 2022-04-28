@@ -3,6 +3,9 @@ from rest_framework.validators import UniqueValidator
 from django.contrib.auth.models import User
 
 class UserSerializer(serializers.ModelSerializer):
+    """
+    Performs Serialisation for User db
+    """
     email = serializers.EmailField(
             required=True,
             validators=[UniqueValidator(queryset=User.objects.all())]

@@ -17,7 +17,10 @@ from .serializer import MovieSerializer
 
 @api_view(["GET"])
 @permission_classes([IsAuthenticated])
-def listout(request):
+def get_movies_from_api(request):
+    '''
+    Gets the data from moviedb API and stores in the Local db
+    '''
     response_API = requests.get('https://api.themoviedb.org/4/list/1?page=1&api_key=67db3e5fac832005f2c928320eae287a')
     result = response_API.json()
     result = result.get("results")
@@ -30,7 +33,10 @@ def listout(request):
 
 @api_view(["GET"])
 @permission_classes([IsAuthenticated])
-def show_movie(request):
+def list_movie(request):
+    '''
+    Returns the list of movies available in db
+    '''
     data=Movie.objects.all()
     serializer = MovieSerializer(data,many=True)
     
@@ -39,6 +45,9 @@ def show_movie(request):
 @api_view(["POST"])
 @permission_classes([IsAuthenticated])
 def rate_movie(request):
+    '''
+    Accepts rating from the user and adds it to the movie
+    '''
     username = request.user
     
     rating=request.data.get("rating")
@@ -57,7 +66,10 @@ def rate_movie(request):
     return Response({"success":"Movie has been rated"},status=HTTP_200_OK)
     
 @api_view(["GET"])
-def show_ratings(request):
+def show_avg_ratings(request):
+    '''
+    Returns the Average Ratings of movies
+    '''
     all=Movie.objects.all()
     avg_rating = []
     for each in all:

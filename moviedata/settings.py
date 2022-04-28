@@ -46,10 +46,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-        
-    'user',
+    # External
     'rest_framework',
     'rest_framework.authtoken',
+
+    # Local
+    'user',
     'movierate',
 ]
 

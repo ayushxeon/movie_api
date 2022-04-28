@@ -20,6 +20,9 @@ import json
 @api_view(["POST"])
 @permission_classes([AllowAny])
 def register(request):
+    """
+    Registers the new user
+    """
     serializer = UserSerializer(data=request.data)
     if serializer.is_valid():
         user = serializer.save()
@@ -32,6 +35,9 @@ def register(request):
 @api_view(["POST"])
 @permission_classes([AllowAny])
 def token(request):
+    """
+    Returns the token for requested user
+    """
     username = request.data.get("username")
     password = request.data.get("password")
     if username is None or password is None:
